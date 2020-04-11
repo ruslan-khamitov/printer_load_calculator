@@ -104,7 +104,7 @@ class _NewPrinterState extends State<NewPrinter> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Center(
-                      child: RaisedButton(
+                      child: OutlineButton(
                         child: Text('Расчитать загрузку'),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
