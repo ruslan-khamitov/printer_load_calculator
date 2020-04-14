@@ -21,22 +21,23 @@ class Printer {
     this.cartridgePrice,
     this.img,
   })  : assert(name != null),
-        assert(lpm != null),
-        assert(cartridgeResource != null),
-        assert(cartridgePrice != null);
+        assert(lpm != null && lpm > 0),
+        assert(cartridgeResource != null && cartridgeResource > 0),
+        assert(cartridgePrice != null && cartridgePrice > 0);
 
-  /// Расчёт количества картриджей, в зависимости от 
+  /// Расчёт количества картриджей, в зависимости от
   /// количества печатаемых страниц в месяц
   int getCartridgeQuantity(int paperPerMonth) =>
       (paperPerMonth / cartridgeResource).ceil();
-  
+
   /// Минимально выгодная цена на 1 страницу печати
-  /// для того чтобы окупить покупку картриджей в месяц 
+  /// для того чтобы окупить покупку картриджей в месяц
   double getPreferedPrice(int paperPerMonth) {
     double cartrigePrice = getCartridgeQuantity(paperPerMonth) * cartridgePrice;
     return (cartrigePrice / paperPerMonth).ceil().toDouble();
   }
 
+  /// Расчет количества прибыли
   double getProfit(int paperPerMonth, double price) {
     return -(getCartridgeQuantity(paperPerMonth) * cartridgePrice) + (paperPerMonth * price);
   }
